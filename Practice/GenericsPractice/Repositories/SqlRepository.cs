@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GenericsPractice.Repositories
 {
-    public class SqlRepository<T> where T : class, IEntity
+    public class SqlRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<T> _dbSet;
@@ -18,7 +18,6 @@ namespace GenericsPractice.Repositories
 
         public void Add(T item)
         {
-            item.Id = _dbSet.Any() ? _dbSet.Max(item => item.Id) + 1 : 1;
             _dbSet.Add(item);
         }
 

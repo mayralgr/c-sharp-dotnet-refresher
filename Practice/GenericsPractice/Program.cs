@@ -18,7 +18,7 @@ AddOrganizations(organizationRepository);
 
 Console.ReadLine();
 
-static void AddEmployees(ListRepository<Employee> employeeRepository)
+static void AddEmployees(IRepository<Employee> employeeRepository)
 {
     employeeRepository.Add(new Employee
     {
@@ -41,7 +41,7 @@ static void AddEmployees(ListRepository<Employee> employeeRepository)
     employeeRepository.Save();
 }
 
-static void AddOrganizations(ListRepository<Organization> organizationRepository)
+static void AddOrganizations(IRepository<Organization> organizationRepository)
 {
     organizationRepository.Add(new Organization
     {
@@ -62,7 +62,7 @@ static void AddOrganizations(ListRepository<Organization> organizationRepository
     organizationRepository.Save();
 }
 
-static void GetEmployeeById(ListRepository<Employee> employeeRepository)
+static void GetEmployeeById(IRepository<Employee> employeeRepository)
 {
     var employee = employeeRepository.GetById(2);
     Console.WriteLine($"Employee with Id 2: {employee.FirstName}");
