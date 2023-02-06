@@ -5,7 +5,7 @@ using System;
 
 Console.WriteLine("Hello, World!");
 
-var employeeRepository = new EmployeeRepository();
+var employeeRepository = new GenericRepository<Employee>();
 
 employeeRepository.Add(new Employee
 {
@@ -27,7 +27,31 @@ employeeRepository.Add(new Employee
     FirstName = "NAME",
 });
 
+var organizationRepository = new GenericRepository<Organization>();
+
+organizationRepository.Add(new Organization
+{
+    Id = 1,
+    FirstName = "Org 1",
+});
+
+
+organizationRepository.Add(new Organization
+{
+    Id = 3,
+    FirstName = "Org 3",
+});
+
+
+organizationRepository.Add(new Organization
+{
+    Id = 3,
+    FirstName = "Org 33",
+});
+
+
 
 employeeRepository.Save();
+organizationRepository.Save();
 
 Console.ReadLine();
