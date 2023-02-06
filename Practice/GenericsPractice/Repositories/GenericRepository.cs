@@ -5,7 +5,12 @@ using System.Linq;
 
 namespace GenericsPractice.Repositories
 {
-    public class GenericRepository<T> where T : EntityBase // Constraint for the T be of type ....
+    /// <summary>
+    /// When defined with entitybase, that is a referenced type
+    /// when defined with IEntity it can be a value type or a reference type, which means cannot return null, because it can be a non nullable VALUE type and should use default(T)
+    /// class and class? constraint define it is a reference type and can return null
+    /// </summary>
+    public class GenericRepository<T> where T : class, IEntity // Constraint for the T be of type ....
     {
         private readonly List<T> _items = new();
         public void Add(T item)
