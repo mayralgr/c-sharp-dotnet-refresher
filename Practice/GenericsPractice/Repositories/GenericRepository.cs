@@ -1,15 +1,22 @@
-﻿using System;
+﻿using GenericsPractice.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GenericsPractice.Repositories
 {
-    public class GenericRepository<T, TKey>
+    public class GenericRepository<T> where T : EntityBase // Constraint for the T be of type ....
     {
-        public TKey? Key { get; set; }
-        protected readonly List<T> _items = new();
+        private readonly List<T> _items = new();
         public void Add(T item)
         {
+            item.Id = _items.Any() ? _items.Max(item => item.Id) + 1 : 1; 
             _items.Add(item);
+        }
+
+        public void Remove(T item)
+        {
+            _items.Remove(item);
         }
 
         public void Save()
@@ -18,6 +25,11 @@ namespace GenericsPractice.Repositories
             {
                 Console.WriteLine(item);
             }
+        }
+
+        public T GetById(int id)
+        {
+            return _items.Single(x => x.Id == id);
         }
     }
 }
