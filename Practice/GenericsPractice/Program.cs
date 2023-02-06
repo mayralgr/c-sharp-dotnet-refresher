@@ -5,7 +5,7 @@ using System;
 
 Console.WriteLine("Hello, World!");
 
-var employeeRepository = new GenericRepository<Employee>();
+var employeeRepository = new GenericRepository<Employee, int>();
 
 employeeRepository.Add(new Employee
 {
@@ -28,7 +28,6 @@ employeeRepository.Add(new Employee
 });
 
 var organizationRepository = new GenericRepositoryWithRemove<Organization>();
-
 organizationRepository.Add(new Organization
 {
     Id = 1,
