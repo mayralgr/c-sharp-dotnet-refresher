@@ -10,9 +10,16 @@ namespace GenericsPractice.Repositories
     /// when defined with IEntity it can be a value type or a reference type, which means cannot return null, because it can be a non nullable VALUE type and should use default(T)
     /// class and class? constraint define it is a reference type and can return null
     /// </summary>
-    public class GenericRepository<T> where T : class, IEntity // Constraint for the T be of type ....
+    public class GenericRepository<T> where T : class, IEntity, new() 
+        // Constraint for the T be a class, T be of type .... and new, should be the last constraint and indicated the value of T needs a parameterless constructor
     {
         private readonly List<T> _items = new();
+
+        public T CreateItem()
+        {
+            return new T();
+        }
+
         public void Add(T item)
         {
             item.Id = _items.Any() ? _items.Max(item => item.Id) + 1 : 1; 
