@@ -27,7 +27,7 @@ employeeRepository.Add(new Employee
     FirstName = "NAME",
 });
 
-var organizationRepository = new GenericRepository<Organization>();
+var organizationRepository = new GenericRepositoryWithRemove<Organization>();
 
 organizationRepository.Add(new Organization
 {
@@ -35,13 +35,12 @@ organizationRepository.Add(new Organization
     FirstName = "Org 1",
 });
 
-
-organizationRepository.Add(new Organization
+var org2 = new Organization
 {
     Id = 3,
-    FirstName = "Org 3",
-});
-
+    FirstName = "Org 3"
+};
+organizationRepository.Add(org2);
 
 organizationRepository.Add(new Organization
 {
@@ -52,6 +51,8 @@ organizationRepository.Add(new Organization
 
 
 employeeRepository.Save();
+organizationRepository.Save();
+organizationRepository.Remove(org2);
 organizationRepository.Save();
 
 Console.ReadLine();
