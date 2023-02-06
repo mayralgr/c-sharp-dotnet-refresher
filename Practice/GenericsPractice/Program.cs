@@ -1,23 +1,24 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using GenericsPractice.Data;
 using GenericsPractice.Entities;
 using GenericsPractice.Repositories;
 using System;
 
 Console.WriteLine("Hello, World!");
 
-var employeeRepository = new GenericRepository<Employee>();
+var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
 
 AddEmployees(employeeRepository);
 GetEmployeeById(employeeRepository);
 
 
-var organizationRepository = new GenericRepository<Organization>();
+var organizationRepository = new ListRepository<Organization>();
 
 AddOrganizations(organizationRepository);
 
 Console.ReadLine();
 
-static void AddEmployees(GenericRepository<Employee> employeeRepository)
+static void AddEmployees(ListRepository<Employee> employeeRepository)
 {
     employeeRepository.Add(new Employee
     {
@@ -40,7 +41,7 @@ static void AddEmployees(GenericRepository<Employee> employeeRepository)
     employeeRepository.Save();
 }
 
-static void AddOrganizations(GenericRepository<Organization> organizationRepository)
+static void AddOrganizations(ListRepository<Organization> organizationRepository)
 {
     organizationRepository.Add(new Organization
     {
@@ -61,7 +62,7 @@ static void AddOrganizations(GenericRepository<Organization> organizationReposit
     organizationRepository.Save();
 }
 
-static void GetEmployeeById(GenericRepository<Employee> employeeRepository)
+static void GetEmployeeById(ListRepository<Employee> employeeRepository)
 {
     var employee = employeeRepository.GetById(2);
     Console.WriteLine($"Employee with Id 2: {employee.FirstName}");
