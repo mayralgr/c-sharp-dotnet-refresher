@@ -1,6 +1,7 @@
 ﻿using GenericsPractice.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GenericsPractice.Repositories
@@ -34,6 +35,11 @@ namespace GenericsPractice.Repositories
         public T GetById(int id)
         {
             return _dbSet.Find(id);
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return _dbSet.ToList();
         }
     }
 }

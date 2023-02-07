@@ -28,15 +28,20 @@ namespace GenericsPractice.Repositories
 
         public void Save()
         {
-            foreach (T item in _items)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (T item in _items)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
 
         public T GetById(int id)
         {
             return _items.Single(x => x.Id == id);
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return _items.ToList();
         }
     }
 }

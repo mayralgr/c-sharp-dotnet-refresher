@@ -1,11 +1,17 @@
 ﻿using GenericsPractice.Entities;
+using System.Collections.Generic;
 
 namespace GenericsPractice.Repositories
 {
-    public interface IRepository<T> where T : IEntity
+    public interface IReadRepository<out T>
+    {
+        T GetById(int id);
+        IEnumerable<T> GetAll();
+
+    }
+    public interface IRepository<T>: IReadRepository<T> where T : IEntity
     {
         void Add(T item);
-        T GetById(int id);
         void Remove(T item);
         void Save();
     }

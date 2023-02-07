@@ -11,11 +11,12 @@ var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
 AddEmployees(employeeRepository);
 GetEmployeeById(employeeRepository);
 
+WriteAllToConsole(employeeRepository);
 
 var organizationRepository = new ListRepository<Organization>();
 
 AddOrganizations(organizationRepository);
-
+WriteAllToConsole(organizationRepository);
 Console.ReadLine();
 
 static void AddEmployees(IRepository<Employee> employeeRepository)
@@ -66,4 +67,12 @@ static void GetEmployeeById(IRepository<Employee> employeeRepository)
 {
     var employee = employeeRepository.GetById(2);
     Console.WriteLine($"Employee with Id 2: {employee.FirstName}");
+}
+
+static void WriteAllToConsole(IReadRepository<IEntity> repository)
+{
+    foreach (var item in repository.GetAll())
+    {
+        Console.WriteLine(item);
+    }
 }
