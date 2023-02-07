@@ -9,6 +9,8 @@ Console.WriteLine("Hello, World!");
 var employeeRepository = new SqlRepository<Employee>(new StorageAppDbContext());
 
 AddEmployees(employeeRepository);
+AddManagers(employeeRepository);
+
 GetEmployeeById(employeeRepository);
 
 WriteAllToConsole(employeeRepository);
@@ -75,4 +77,13 @@ static void WriteAllToConsole(IReadRepository<IEntity> repository)
     {
         Console.WriteLine(item);
     }
+}
+
+
+static void AddManagers(IWriteRepository<Manager> managerRepository)
+{
+    //employeeRepository.Add(new Employee());
+    managerRepository.Add(new Manager { FirstName = "Sara" });
+    managerRepository.Add(new Manager { FirstName = "Henry" });
+    managerRepository.Save();
 }
